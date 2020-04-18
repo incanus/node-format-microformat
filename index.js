@@ -90,6 +90,7 @@ const Formatter = function (options) {
 
   this.relativeTo = options.relativeTo;
   this.markdown = !options.noMarkdown;
+  this.externalSlug = options.externalSlug === undefined ? false : options.externalSlug;
   this.contentSlug = !!options.contentSlug;
   this.defaults = options.defaults;
   this.deriveLanguages = options.deriveLanguages || false;
@@ -191,6 +192,13 @@ Formatter.prototype._formatContent = function (data) {
 };
 
 Formatter.prototype._formatSlug = function (data) {
+  if (typeof this.externalSlug === 'function') {
+    let external = this.externalSlug(data.properties.published[0]);
+    if (external !== false) {
+      return external;
+    }
+  }
+
   if (data.properties.slug && data.properties.slug[0]) {
     return semiKebabCase(data.properties.slug[0]);
   }

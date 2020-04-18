@@ -66,6 +66,7 @@ formatter.preFormat(micropubDocument)
 
 * **relativeTo** – if set to a URL, then all formatted URL:s will be resolved to absolute URL:s relative to that one rather then be returned as relative ones.
 * **noMarkdown** – if set to `true` then no conversion to Markdown will happen for the content.
+* **externalSlug** — a method that's provided the publish date/time of the post and which returns a slug to use. Overrides any use of `contentSlug`.
 * **contentSlug** – if set to `true`, then the slug creation will use the `properties.content` data as a fallback to `properties.name` prior to basing the slug on the timestamp.
 * **defaults** – a `micropubDocument` with defaults that will be added as part of the `preFormat()`. Useful to eg. ensure that all documents have a language explicitly set.
 * **deriveCategory** – a method that's provided the properties of the post and which returns a dervice category – or `false` to disable default category deriving
